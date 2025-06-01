@@ -1,5 +1,6 @@
 <?php
 session_start();
+require 'koneksi.php';
 
 $errors = [];
 
@@ -8,29 +9,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'] ?? '';
     $role = $_POST['role'] ?? '';
 
-    // Login simulasi berdasarkan role
-    if ($email === 'rehan@gmail.com' && $password === '1234' && $role === 'mahasiswa') {
-        $_SESSION['email'] = $email;
-        $_SESSION['username'] = 'REKOLING';
-        $_SESSION['role'] = 'mahasiswa';
-        $_SESSION['status'] = 'active';
+    $stmt = $conn->prepare("SELECT * FROM users WHERE email = ? AND role = ?");
+    $stmt->bind_param("ss", $email, $role);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-        header('Location: profile.php');
-        exit;
-    } elseif ($email === 'dosen@gmail.com' && $password === '4321' && $role === 'dosen') {
-        $_SESSION['email'] = $email;
-        $_SESSION['username'] = 'DOSENKU';
-        $_SESSION['role'] = 'dosen';
-        $_SESSION['status'] = 'active';
+    if ($result->num_rows === 1) {
+        $user = $result->fetch_assoc();
 
-        header('Location: profiled.php');
-        exit;
+        if (password_verify($password, $user['password'])) {
+            $_SESSION['email'] = $user['email'];
+            $_SESSION['username'] = $user['username'];
+            $_SESSION['role'] = $user['role'];
+            $_SESSION['status'] = $user['status'];
+
+            if ($user['role'] === 'mahasiswa') {
+                header('Location: profile.php');
+            } else {
+                header('Location: profiled.php');
+            }
+            exit;
+        } else {
+            $errors['login'] = 'Password salah.';
+        }
     } else {
-        $errors['login'] = 'Email, password, atau peran tidak sesuai.';
+        $errors['login'] = 'Akun tidak ditemukan atau peran salah.';
     }
 }
 
 ?>
+
+
 
 
 

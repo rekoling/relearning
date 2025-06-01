@@ -2,7 +2,7 @@
 $host = "localhost";
 $user = "root";
 $pass = "";
-$db   = "simpan_mt"; // ganti sesuai nama database kamu
+$db   = "db_relearning"; // ganti sesuai nama database kamu
 
 $conn = mysqli_connect($host, $user, $pass, $db);
 

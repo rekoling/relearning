@@ -1,0 +1,134 @@
+:root {
+  --primary-color: #8F90FF;
+  --primary-hover: #7A7BFF;
+  --secondary-color: #6c757d;
+  --light-bg: #F5F5FF;
+  --card-bg: #FFFFFF;
+  --text-dark: #212529;
+  --text-muted: #6c757d;
+  --shadow-md: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--light-bg);
+  color: var(--text-dark);
+  height: 100%;
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+.illustration {
+  flex: 1;
+  background-color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.illustration img {
+  width: 80%;
+  max-width: 400px;
+}
+
+.form-box {
+  flex: 1;
+  background-color: var(--card-bg);
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.form-box h2 {
+  margin-bottom: 0.5rem;
+  font-size: 28px;
+}
+
+.form-box p {
+  margin-bottom: 2rem;
+  color: var(--text-muted);
+}
+
+.input-group {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group label {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.input-group input,
+.input-group select {
+  padding: 0.75rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: var(--transition);
+}
+
+.input-group input:focus,
+.input-group select:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+.register-button {
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 0.75rem;
+  width: 100%;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.register-button:hover {
+  background-color: var(--primary-hover);
+}
+
+.login-link {
+  margin-top: 1rem;
+  font-size: 14px;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.login-link a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .form-box {
+    padding: 2rem;
+  }
+
+  .illustration img {
+    max-width: 250px;
+  }
+}

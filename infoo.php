@@ -1,4 +1,14 @@
-<?php?>
+<?php
+require_once 'koneksi.php';  // koneksi ke database
+
+// ... kode HTML dan PHP lainnya ...
+
+$sql = "SELECT * FROM materi ORDER BY id DESC";
+$result = mysqli_query($conn, $sql);
+
+// cek hasil query dll...
+?>
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,7 +34,7 @@
     </button>
 
     <!-- Logo -->
-    <a class="navbar-brand d-flex align-items-center" href="info.php">
+    <a class="navbar-brand d-flex align-items-center" href="infoo.php">
       <img src="images/logo.png" alt="Learnfy Logo" width="55" height="55" class="me-2">
       Learnfy
     </a>
@@ -38,26 +48,26 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <a class="nav-link" href="#" aria-current="page"><i class="bi bi-house-door me-1"></i> Beranda</a>
+          <a class="nav-link" href="infoo.php" aria-current="page"><i class="bi bi-house-door me-1"></i> Beranda</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#Daftar Materi"><i class="bi bi-journal-text me-1"></i> Materi</a>
+          <a class="nav-link" href="#konten"><i class="bi bi-journal-text me-1"></i> Materi</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#Daftar Kuis"><i class="bi bi-question-circle me-1"></i> Kuis</a>
+          <a class="nav-link" href="#kuis"><i class="bi bi-question-circle me-1"></i> Kuis</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#Daftar Diskusi"><i class="bi bi-chat-dots me-1"></i> Diskusi</a>
+          <a class="nav-link" href="#diskusi"><i class="bi bi-chat-dots me-1"></i> Diskusi</a>
         </li>
       </ul>
 
-      <!-- Profile Dropdown -->
+       <!-- Profile Dropdown -->
       <div class="dropdown me-3">
         <a href="#" class="nav-link dropdown-toggle" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Profile menu">
           <i class="bi bi-person-circle"></i>
         </a>
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
-          <li><a class="dropdown-item" href="index.php"><i class="bi bi-person me-2"></i> Profil</a></li>
+          <li><a class="dropdown-item" href="profile.php"><i class="bi bi-person me-2"></i> Profil</a></li>
           <li><a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i> Pengaturan</a></li>
           <li><hr class="dropdown-divider"></li>
           <li><a class="dropdown-item" href="index.php"><i class="bi bi-box-arrow-in-right me-2"></i> Login</a></li>
@@ -218,236 +228,174 @@
 </div>
 
 <!-- Main Content -->
- <section id = "Daftar Materi"> 
-<main class="main-content">
-  <div class="container-fluid">
-    <div class="row">
-      <section class="col-md-12 p-4">
-        <!-- Materials Section -->
-        <div class="section-container">
-          <div class="d-flex justify-content-between align-items-center mb-4">
-            <h2 class="section-title"><i class="bi bi-journal-text me-2"></i>Daftar Materi</h2>
-          </div>
-          
-          <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-            <!-- Material Card 1 -->
-            <div class="col">
-              <div class="card h-100">
-                <img src="images/program.jpeg" class="card-img-top" alt="Ilustrasi Pemrograman Dasar">
-                <div class="card-body">
-                  <h5 class="card-title">Pemrograman Dasar</h5>
-                  <p class="card-text">Pelajari dasar-dasar pemrograman menggunakan Python dengan pendekatan praktis dan contoh nyata.</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <span class="badge bg-primary">Baru</span>
-                    <a href="detail_materi1.php" class="btn btn-custom btn-sm">Buka Materi</a>
-                  </div>
-                </div>
-              </div>
+<section id="konten">
+  <main class="main-content">
+    <div class="container-fluid">
+      <div class="row">
+        <section class="col-md-12 p-4">
+
+          <!-- Section: Daftar Materi -->
+          <section id="materi" class="section-container mb-5">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <h2 class="section-title">
+                <i class="bi bi-journal-text me-2"></i>Daftar Materi
+              </h2>
             </div>
 
-            
-            <!-- Material Card 2 -->
-            <div class="col">
-              <div class="card h-100">
-                <img src="images/web.jpeg" class="card-img-top" alt="Ilustrasi Desain Grafis">
-                <div class="card-body">
-                  <h5 class="card-title">Desain Grafis</h5>
-                  <p class="card-text">Kuasai tools desain seperti Adobe Photoshop dan Illustrator melalui proyek-proyek kreatif.</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <span class="badge bg-success">Populer</span>
-                    <a href="detail_materi2.php" class="btn btn-custom btn-sm">Buka Materi</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Material Card 3 -->
-            <div class="col">
-              <div class="card h-100">
-                <img src="images/project.jpeg" class="card-img-top" alt="Ilustrasi Manajemen Proyek">
-                <div class="card-body">
-                  <h5 class="card-title">Manajemen Proyek</h5>
-                  <p class="card-text">Pelajari dasar-dasar Manajemen Proyek tingkat pemula dengan studi kasus dunia nyata.</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <span class="badge bg-info">Rekomendasi</span>
-                    <a href="detail_materi3.php" class="btn btn-custom btn-sm">Buka Materi</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+            <?php
+            $sql = "SELECT * FROM materi ORDER BY id DESC";
+            $result = mysqli_query($conn, $sql);
+            ?>
 
-       <!-- Quizzes Section -->
-       <section id = "Daftar Kuis"> 
-<div class="section-container">
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+              <?php while ($row = mysqli_fetch_assoc($result)) : ?>
+                <div class="col">
+                  <div class="card h-100">
+                    <img src="images/<?= htmlspecialchars($row['gambar']) ?>" class="card-img-top" alt="Gambar Materi">
+                    <div class="card-body">
+                      <h5 class="card-title"><?= htmlspecialchars($row['judul']) ?></h5>
+                      <p class="card-text"><?= nl2br(htmlspecialchars($row['deskripsi'])) ?></p>
+                      <div class="d-flex justify-content-between align-items-center">
+                        <span class="badge bg-primary">Materi</span>
+                        <a href="detail_materi.php?id=<?= $row['id'] ?>&from=infoo" class="btn btn-primary btn-sm">Buka Materi</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <?php endwhile; ?>
+            </div>
+          </section>
+
+          <!-- Section: Daftar Kuis -->
+          <section id="kuis" class="section-container mb-5">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <h2 class="section-title">
+                <i class="bi bi-journal-check me-2"></i>Daftar Kuis
+              </h2>
+            </div>
+
+            <?php
+            $sql = "SELECT * FROM kuis ORDER BY id DESC";
+            $result = mysqli_query($conn, $sql);
+            ?>
+
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+              <?php while ($row = mysqli_fetch_assoc($result)) : ?>
+                <div class="col">
+                  <div class="card h-100">
+                    <img src="images/<?= htmlspecialchars($row['gambar']) ?>" class="card-img-top" alt="Gambar Kuis">
+                    <div class="card-body">
+                      <h5 class="card-title"><?= htmlspecialchars($row['judul']) ?></h5>
+                      <p class="card-text"><?= nl2br(htmlspecialchars($row['deskripsi'])) ?></p>
+                      <div class="d-flex justify-content-between align-items-center">
+                        <span class="badge bg-primary">Kuis</span>
+                        <a href="detail_kuis.php?id=<?= $row['id'] ?>&from=infoo" class="btn btn-primary btn-sm">Lihat Kuis</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <?php endwhile; ?>
+            </div>
+          </section>
+
+          <!-- Section: Daftar Diskusi -->
+          <section id="diskusi" class="section-container mb-5">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <h2 class="section-title"><i class="bi bi-chat-dots me-2"></i>Forum Diskusi</h2>
+            </div>
+
+            <?php
+            $sql = "
+SELECT d.*, COUNT(k.id) AS jumlah_komentar 
+FROM diskusi d
+LEFT JOIN komentar k ON k.id_diskusi = d.id
+GROUP BY d.id
+ORDER BY d.id DESC
+";
+$result = mysqli_query($conn, $sql);
+
+            ?>
+
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+              <?php while ($row = mysqli_fetch_assoc($result)) : ?>
+                <div class="col">
+                  <div class="card h-100 shadow-sm">
+                    <a href="detail_diskusi.php?id=<?= $row['id'] ?>&from=infoo" class="text-decoration-none text-dark">
+                      <img src="images/<?= htmlspecialchars($row['gambar']) ?>" class="card-img-top" alt="Gambar Diskusi" style="height: 180px; object-fit: cover;">
+                      <div class="card-body">
+                        <h5 class="card-title"><?= htmlspecialchars($row['judul']) ?></h5>
+                        <p class="card-text text-truncate"><?= strip_tags($row['isi']) ?></p>
+                        <div class="d-flex justify-content-between align-items-center">
+                          <small class="text-muted">Oleh: <?= htmlspecialchars($row['pengguna']) ?></small>
+                          <span class="badge bg-secondary">
+                            <i class="bi bi-chat-left-text me-1"></i>
+                            <?= $row['jumlah_komentar'] ?? 0 ?>
+                          </span>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              <?php endwhile; ?>
+            </div>
+          </section>
+
+        </section>
+      </div>
+    </div>
+  </main>
+</section>
+
+
+        <!-- Section: Daftar Pengguna -->
+<section id="pengguna" class="section-container mb-5 px-4">
   <div class="d-flex justify-content-between align-items-center mb-4">
-    <h2 class="section-title"><i class="bi bi-question-circle me-2"></i>Daftar Kuis</h2>
+    <h2 class="section-title"><i class="bi bi-people me-2"></i>Daftar Pengguna</h2>
   </div>
 
-  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-    <!-- Quiz Card 1 -->
-    <div class="col">
-      <div class="card h-100">
-        <img src="images/quiz1.jpeg" class="card-img-top" alt="Ilustrasi Kuis Pemrograman">
-        <div class="card-body">
-          <h5 class="card-title">Kuis Pemrograman Dasar</h5>
-          <p class="card-text">Uji pemahaman Anda tentang dasar-dasar pemrograman dengan 20 pertanyaan pilihan ganda.</p>
-          <div class="d-flex justify-content-between align-items-center">
-            <span class="badge bg-warning text-dark">Belum Selesai</span>
-            <a href="detail_kuis1.php" class="btn btn-custom btn-sm">Mulai Kuis</a>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="table-responsive">
+    <table id="usersTable" class="table table-striped table-hover align-middle" style="width:100%">
+      <thead class="table-light">
+        <tr>
+          <th>Nama</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Status</th>
+          <th>Aksi</th>
+        </tr>
+      </thead>
+      <tbody>
+<?php
+require 'koneksi.php';
+$sql = "SELECT * FROM users";
+$result = $conn->query($sql);
 
-            
-            <!-- Quiz Card 2 -->
-            <div class="col">
-              <div class="card h-100">
-                <img src="images/quiz2.jpeg" class="card-img-top" alt="Ilustrasi Kuis Desain">
-                <div class="card-body">
-                  <h5 class="card-title">Kuis Desain Grafis</h5>
-                  <p class="card-text">Uji kemampuan dan pemahaman desain grafis Anda dengan studi kasus praktis.</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <span class="badge bg-success">Selesai</span>
-                    <a href="detail_kuis2.php" class="btn btn-custom btn-sm">Mulai Kuis</a>
-                  </div>
-                </div>
+while ($row = $result->fetch_assoc()) {
+    $badgeRole = $row['role'] === 'dosen' ? 'bg-warning text-dark' : 'bg-primary';
+    $labelRole = $row['role'] === 'dosen' ? 'Teacher' : 'Student';
+
+    $badgeStatus = $row['status'] === 'active' ? 'bg-success' : 'bg-secondary';
+
+    echo "<tr>
+            <td>{$row['username']}</td>
+            <td>{$row['email']}</td>
+            <td><span class='badge {$badgeRole}'>{$labelRole}</span></td>
+            <td><span class='badge {$badgeStatus}'>" . ucfirst($row['status']) . "</span></td>
+            <td>
+              <div class='btn-group' role='group'>
+                <button class='btn btn-sm btn-outline-primary' title='Lihat Detail'><i class='bi bi-eye'></i></button>
+                <button class='btn btn-sm btn-outline-secondary' title='Edit Pengguna'><i class='bi bi-pencil'></i></button>
               </div>
-            </div>
-            
-            <!-- Quiz Card 3 -->
-            <div class="col">
-              <div class="card h-100">
-                <img src="images/quiz3.jpeg" class="card-img-top" alt="Ilustrasi Kuis Manajemen">
-                <div class="card-body">
-                  <h5 class="card-title">Kuis Manajemen Proyek</h5>
-                  <p class="card-text">Uji pengetahuan Anda tentang metodologi dan praktik terbaik Manajemen Proyek.</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <span class="badge bg-success">Selesai</span>
-                    <a href="detail_kuis3.php" class="btn btn-custom btn-sm">Mulai Kuis</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+            </td>
+          </tr>";
+}
+?>
+</tbody>
 
-        <!-- Discussion Forum Section -->
-        <section id = "Daftar Diskusi"> 
-        <div class="section-container">
-          <div class="d-flex justify-content-between align-items-center mb-4">
-            <h2 class="section-title"><i class="bi bi-chat-dots me-2"></i>Forum Diskusi</h2>
-          </div>
-          
-          <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-            <!-- Discussion Card 1 -->
-            <div class="col">
-  <a href="detail_diskusi1.php" class="text-decoration-none text-dark">
-    <div class="card h-100 shadow-sm hover:shadow-lg transition">
-      <img src="images/forum1.jpeg" class="card-img-top" alt="Diskusi tentang Pemrograman">
-      <div class="card-body">
-        <h5 class="card-title">Bagaimana cara memulai proyek pertama?</h5>
-        <p class="card-text">Saya baru belajar pemrograman dan ingin tahu langkah-langkah memulai proyek pertama saya dengan baik.</p>
-        <div class="d-flex justify-content-between align-items-center">
-          <small class="text-muted">Oleh: User1</small>
-          <span class="badge bg-light text-dark">
-            <i class="bi bi-chat-left-text me-1"></i>12
-          </span>
-        </div>
-      </div>
-    </div>
-  </a>
-</div>
+    </table>
+  </div>
 
-            
-           <!-- Discussion Card 2 (klik untuk masuk halaman detail) -->
-<div class="col">
-  <a href="detail_diskusi2.php" class="text-decoration-none text-dark">
-    <div class="card h-100">
-      <img src="images/forum2.jpeg" class="card-img-top" alt="Diskusi tentang Desain">
-      <div class="card-body">
-        <h5 class="card-title">Tips untuk desain yang menarik</h5>
-        <p class="card-text">Apa saja tips dan trik untuk membuat desain yang menarik dan profesional untuk pemula?</p>
-        <div class="d-flex justify-content-between align-items-center">
-          <small class="text-muted">Oleh: User2</small>
-          <span class="badge bg-light text-dark"><i class="bi bi-chat-left-text me-1"></i>8</span>
-        </div>
-      </div>
-    </div>
-  </a>
-</div>
 
-            
-            <!-- Discussion Card 3 -->
-            <div class="col">
-            <a href="detail_diskusi3.php" class="text-decoration-none text-dark">
-              <div class="card h-100">
-                <img src="images/forum3.jpeg" class="card-img-top" alt="Diskusi tentang Manajemen">
-                <div class="card-body">
-                  <h5 class="card-title">Belajar Manajemen Proyek untuk Pemula</h5>
-                  <p class="card-text">Bagaimana cara menjadi manajer proyek yang handal dan profesional? Apa langkah pertama yang harus dipelajari?</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <small class="text-muted">Oleh: User3</small>
-                    <span class="badge bg-light text-dark"><i class="bi bi-chat-left-text me-1"></i>5</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          </a>
-        </div>
-
-        <!-- Users Table -->
-        <div class="section-container">
-          <h2 class="section-title"><i class="bi bi-people me-2"></i>Daftar Pengguna</h2>
-          <div class="table-responsive">
-            <table id="usersTable" class="table table-hover" style="width:100%">
-              <thead class="table-light">
-                <tr>
-                  <th>Nama</th>
-                  <th>Email</th>
-                  <th>Role</th>
-                  <th>Status</th>
-                  <th>Aksi</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>User1</td>
-                  <td>user1@example.com</td>
-                  <td><span class="badge bg-primary">Student</span></td>
-                  <td><span class="badge bg-success">Active</span></td>
-                  <td>
-                    <button class="btn btn-sm btn-outline-primary"><i class="bi bi-eye"></i></button>
-                    <button class="btn btn-sm btn-outline-secondary"><i class="bi bi-pencil"></i></button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>User2</td>
-                  <td>user2@example.com</td>
-                  <td><span class="badge bg-warning text-dark">Teacher</span></td>
-                  <td><span class="badge bg-success">Active</span></td>
-                  <td>
-                    <button class="btn btn-sm btn-outline-primary"><i class="bi bi-eye"></i></button>
-                    <button class="btn btn-sm btn-outline-secondary"><i class="bi bi-pencil"></i></button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>User3</td>
-                  <td>user3@example.com</td>
-                  <td><span class="badge bg-primary">Student</span></td>
-                  <td><span class="badge bg-secondary">Inactive</span></td>
-                  <td>
-                    <button class="btn btn-sm btn-outline-primary"><i class="bi bi-eye"></i></button>
-                    <button class="btn btn-sm btn-outline-secondary"><i class="bi bi-pencil"></i></button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
       </section>
     </div>
   </div>
@@ -514,6 +462,8 @@
   </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
   <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <!-- Bootstrap 5 JS -->
@@ -522,35 +472,53 @@
   <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
   <script>
-    // Inisialisasi Chart.js
-    document.addEventListener('DOMContentLoaded', function() {
-      const ctx = document.getElementById('quizChart').getContext('2d');
-      const quizChart = new Chart(ctx, {
-        type: 'bar', // Jenis chart (bisa diganti ke 'line', 'pie', dll.)
-        data: {
-          labels: ['Quiz 1', 'Quiz 2', 'Quiz 3', 'Quiz 4', 'Quiz 5'], // Label quiz
-          datasets: [{
-            label: 'Nilai Rata-rata',
-            data: [85, 90, 78, 92, 88], // Data nilai rata-rata
-            backgroundColor: 'rgba(143, 144, 255, 0.5)', // Warna background
-            borderColor: '#8F90FF', // Warna border
-            borderWidth: 1
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          scales: {
-            y: {
-              beginAtZero: true,
-              max: 100
-            }
-          }
-        }
-      });
+   <!-- Pastikan Chart.js sudah terpasang -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-      // Inisialisasi DataTables
-      $('#usersTable').DataTable();
-    });
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const canvas = document.getElementById('quizChart');
+  
+  // Cek apakah canvas ditemukan
+  if (!canvas) {
+    console.error('Elemen canvas dengan id "quizChart" tidak ditemukan.');
+    return;
+  }
+
+  const ctx = canvas.getContext('2d');
+  if (!ctx) {
+    console.error('Gagal mendapatkan context 2D dari canvas.');
+    return;
+  }
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Quiz 1', 'Quiz 2', 'Quiz 3', 'Quiz 4', 'Quiz 5'],
+      datasets: [{
+        label: 'Nilai Rata-rata',
+        data: [85, 90, 78, 92, 88], // Data nilai rata-rata kuis
+        backgroundColor: 'rgba(143, 144, 255, 0.5)',
+        borderColor: '#8F90FF',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 100
+        }
+      }
+    }
+  });
+});
+</script>
+<script>
+      $(document).ready(function () {
+    $('#usersTable').DataTable();
+  });
   </script>
 </body>
