@@ -111,10 +111,7 @@ ob_start();
     </section>
 </div>
 
-<style>
-/* Include the existing CSS from index.css here for now */
-/* This should be moved to public/assets/css/app.css */
-</style>
+<!-- CSS is now properly organized in separate files -->
 
 <script>
 function togglePasswordVisibility() {
