@@ -1,0 +1,17 @@
+.git/
+.gitignore
+README.md
+Dockerfile
+docker-compose*.yml
+.dockerignore
+.env
+.env.*
+node_modules/
+npm-debug.log
+yarn-error.log
+.DS_Store
+*.md
+tests/
+.phpunit.result.cache
+vendor/
+composer.lock

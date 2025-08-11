@@ -1,0 +1,110 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    container_name: elearning_app
+    ports:
+      - "8080:80"
+    environment:
+      - DB_HOST=db
+      - DB_NAME=db_relearning
+      - DB_USER=elearning_user
+      - DB_PASS=elearning_password
+      - APP_ENV=development
+      - APP_DEBUG=true
+      - APP_URL=http://localhost:8080
+    volumes:
+      - .:/var/www/html
+      - ./logs:/var/www/html/logs
+      - ./uploads:/var/www/html/uploads
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - elearning_network
+
+  db:
+    image: mysql:8.0
+    container_name: elearning_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: db_relearning
+      MYSQL_USER: elearning_user
+      MYSQL_PASSWORD: elearning_password
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./database/db_relearning.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "3307:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 10s
+      retries: 5
+      interval: 30s
+      start_period: 30s
+    networks:
+      - elearning_network
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: elearning_phpmyadmin
+    environment:
+      PMA_HOST: db
+      PMA_USER: elearning_user
+      PMA_PASSWORD: elearning_password
+      MYSQL_ROOT_PASSWORD: root_password
+    ports:
+      - "8081:80"
+    depends_on:
+      - db
+    networks:
+      - elearning_network
+
+  redis:
+    image: redis:7-alpine
+    container_name: elearning_redis
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6379:6379"
+    networks:
+      - elearning_network
+
+volumes:
+  db_data:
+    driver: local
+  redis_data:
+    driver: local
+
+networks:
+  elearning_network:
+    driver: bridge
+
+# Production override
+# docker-compose -f docker-compose.yml -f docker-compose.prod.yml up
+---
+# docker-compose.prod.yml
+version: '3.8'
+
+services:
+  app:
+    build:
+      target: production
+    environment:
+      - APP_ENV=production
+      - APP_DEBUG=false
+    volumes:
+      - ./uploads:/var/www/html/uploads:rw
+      - ./logs:/var/www/html/logs:rw
+    restart: unless-stopped
+
+  db:
+    restart: unless-stopped
+    
+  redis:
+    restart: unless-stopped
